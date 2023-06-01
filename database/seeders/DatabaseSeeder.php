@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(5)->create();
-                     Listing::factory(6)->create();
+        \App\Models\User::factory(10)->create();
+                     Listing::factory(23)->create();
         /*Listing::create([
             'title' => 'Laravel Senior Developer', 
             'tags' => 'laravel, javascript',

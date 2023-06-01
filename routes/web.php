@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -22,43 +23,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/', function () {
-    return view(
-       // this is the view 
-        'listings',
-
-        [
-            'header' => 'latest listings ',
-
-            'listings' =>Listing::all()
-            
-            /* on a envoyer ceci au Model Listing::all() method 
-            [
-                [
-                    'id' => 1,
-                    'title' => 'listing one',
-                    'description' => '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
-                ],
-                [
-                    'id' => 2,
-                    'title' => 'listing two',
-                    'description' => '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
-                ]
-            ]
-            */
-        ]
-
-    );
-});
-
-Route::get('listing/{listing}', function(Listing $listing){
-   
-   return view('listing',[
-
-        'listing'=>$listing
-   ]);
-    }
-);
+Route::get('/', [ListingController::class,'index']);
+Route::get('listing/{listing}',[ListingController::class,'show']);
 
 /*  learning purpose
 //******************************************************************
