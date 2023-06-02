@@ -14,17 +14,58 @@ use App\Models\Listing;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
 
 
 
+// Common Resource Routes:
+// index - Show all listings
+// show - Show single listing
+// create - Show form to create new listing
+// store - Store new listing
+// edit - Show form to edit listing
+// update - Update listing
+// destroy - Delete listing  
 
+
+//all listings
 Route::get('/', [ListingController::class,'index']);
+
+// single listing
 Route::get('listing/{listing}',[ListingController::class,'show']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*  learning purpose
 //******************************************************************

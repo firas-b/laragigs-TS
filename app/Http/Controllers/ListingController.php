@@ -6,21 +6,22 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
-{
+{ 
     // show listings
     public function index()
     {
+        //dd(request()->tag);//oudd(request('tag'))
         return view(
-            // this is the view 
-            'listings',
+        
+            'listings.index',
             [
-                'listings' => Listing::all()
+                'listings' => Listing::latest()->filter(request(['tag','search']))->get()
             ]
         );
     }
 // show single listing 
     public function show(Listing $listing ){
-        return view('listing',[
+        return view('listings.show',[
 
             'listing'=>$listing,
        ]);        
