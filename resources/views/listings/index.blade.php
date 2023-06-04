@@ -14,4 +14,11 @@
         <p> no listings found</p>
     @endunless
     </div>
+   
+   {{-- for pagination :
+   or we can iuse another pagination template by eunning the command  :
+   php artisan vendor:publish
+   and choosing :: Illuminate\Pagination\PaginationServiceProvider --}}
+
+    <div class="mt-6 p-4">{{$listings->links()}}</div>
 @endsection
