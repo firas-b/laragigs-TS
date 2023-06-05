@@ -29,7 +29,7 @@ class ListingController extends Controller
             'listing' => $listing,
         ]);
     }
-    
+
     public function create()
     {
 
@@ -58,5 +58,36 @@ class ListingController extends Controller
        Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing created successfully!');
+    }
+
+
+
+    //show edit form 
+    public function edit(Listing $listing){
+
+        return view('listings.edit',[
+            'listing'=>$listing,
+        ]);
+    }
+
+    //update a listing 
+    public function update(Request $request , Listing $listing  /* containing the $listing->id   inthe form action */ ){
+
+      
+
+        $formFields=$request->validate([
+            'title' => 'required',
+            'company' =>'required',
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
+
+
+        ]);
+        
+       $listing->update($formFields);
+        return redirect('/')->with('message', 'Listing updated  successfully!');
     }
 }

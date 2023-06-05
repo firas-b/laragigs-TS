@@ -31,10 +31,13 @@ use App\Models\Listing;
 Route::get('/', [ListingController::class,'index']);
 // Show Create Form
 Route::get('/listings/create',[ListingController::class, 'create']);
-
 // Store Listing Data
 Route::post('/listings',[ListingController::class,'store']);
- 
+//show edit form 
+Route::get('/listings/{listing}/edit',[ListingController::class,'edit']);
+//update a listing
+Route::put('/listings/{listing}',[ListingController::class,'update']);
+
 // single listing always this kind of routes must be in the last to do not interuupt the others
 Route::get('/listing/{listing}',[ListingController::class,'show']);
 
