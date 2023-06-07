@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ListingController;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,19 +28,40 @@ use App\Models\Listing;
 // destroy - Delete listing  
 
 
+
+/******   listings   ******/
+
 //all listings
 Route::get('/', [ListingController::class,'index']);
 // Show Create Form
-Route::get('/listings/create',[ListingController::class, 'create']);
+Route::get('/listings/create',[ListingController::class, 'create'])->middleware('auth');
 // Store Listing Data
-Route::post('/listings',[ListingController::class,'store']);
+Route::post('/listings',[ListingController::class,'store'])->middleware('auth');
 //show edit form 
-Route::get('/listings/{listing}/edit',[ListingController::class,'edit']);
+Route::get('/listings/{listing}/edit',[ListingController::class,'edit'])->middleware('auth');
 //update a listing
-Route::put('/listings/{listing}',[ListingController::class,'update']);
+Route::put('/listings/{listing}',[ListingController::class,'update'])->middleware('auth');
+//delete  a listing
+Route::delete('/listings/{listing}',[ListingController::class,'destroy'])->middleware('auth');
 
 // single listing always this kind of routes must be in the last to do not interuupt the others
 Route::get('/listing/{listing}',[ListingController::class,'show']);
+
+
+
+
+/******   user   ******/
+//show registration form
+Route ::get('/register',[UserController::class,'create'])->middleware('guest');
+// store new user
+Route::post('/user',[UserController::class,'store'])->middleware('guest');
+// logout
+Route::post ('/logout',[UserController::class ,'logout'])->middleware('auth'); 
+//show login form
+Route::get('/login' ,[UserController::class, 'login'])->name('login')->middleware('guest');
+// login user
+Route::post('/users/authenticate',[UserController::class,'authenticate'])->middleware('guest');
+
 
 
 

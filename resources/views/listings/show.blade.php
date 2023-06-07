@@ -42,6 +42,15 @@
             </a>
 
 
+            <form  method="POST" action="/listings/{{$listing->id}}">
+                @csrf
+                @method('delete')
+
+                <button> delete <i class="fa-solid fa-trash"></i></button>
+
+            </form>
+
+
         </x-card>
 
 

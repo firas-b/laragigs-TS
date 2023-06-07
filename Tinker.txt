@@ -1,0 +1,163 @@
+
+  /********* example de usage tinker ***********************************/
+php artisan tinker :
+
+> \App\Models\Listing::first();                                                                                                                                    
+= App\Models\Listing {#6967
+    id: 1,
+    user_id: 1,
+    title: "Doloremque sed porro officiis rerum ut esse.",
+    logo: null,
+    tags: "laravel, api,    backend",
+    company: "Wilkinson LLC",
+    location: "Denaview",
+    email: "aparisian@kulas.net",
+    website: "http://mayer.com/quaerat-consequatur-labore-aut-perspiciatis-hic-quia-nemo-iste.html",
+    description: "Quibusdam pariatur laboriosam dolor blanditiis. Ea in atque alias odit fugit. Enim in reiciendis reprehenderit. Excepturi fugiat aut placeat doloribus aliquid. Qui non rerum at mollitia.",
+    created_at: "2023-06-07 13:04:37",
+    updated_at: "2023-06-07 13:04:37",
+  }
+
+> \App\Models\Listing::find(3);                                                                                                                                    
+= App\Models\Listing {#7225
+    id: 3,
+    user_id: 1,
+    title: "Aperiam voluptatem fugit et maxime et deleniti.",
+    logo: null,
+    tags: "laravel, api,    backend",
+    company: "Hettinger Ltd",
+    location: "West Chet",
+    email: "magnus34@heaney.com",
+    website: "http://www.dietrich.com/labore-pariatur-modi-sed-sunt-culpa-mollitia-rerum",
+    description: "Voluptas culpa corrupti aut sit. Voluptatem vel recusandae necessitatibus inventore eos aut voluptatem. Quaerat eligendi in repellendus id laudantium consequatur. Modi debitis magnam voluptas ducimus. Et voluptatem voluptates minus eaque animi voluptas delectus. Vel officiis repellat consequatur architecto quas. Omnis in repudiandae sunt ut asperiores animi.",
+    created_at: "2023-06-07 13:04:37",
+    updated_at: "2023-06-07 13:04:37",
+  }
+
+> \App\Models\Listing::find(3)->user()->name;                                                                                                                      
+
+   WARNING  Undefined property: Illuminate\Database\Eloquent\Relations\BelongsTo::$name in C:\Users\firas\Desktop\PROJETS\laragigs-TSeval()'d code.
+
+= null
+
+> \App\Models\Listing::find(3)->user();                                                                                                                            
+= Illuminate\Database\Eloquent\Relations\BelongsTo {#7074}
+
+> $user =User::first();                                                                                                                                            
+[!] Aliasing 'User' to 'App\Models\User' for this Tinker session.
+= App\Models\User {#7228
+    id: 1,
+    name: "jhon doe",
+    email: "jhon@mail.com",
+    email_verified_at: "2023-06-07 13:04:37",
+    #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+    #remember_token: "Ti6846oW44",
+    created_at: "2023-06-07 13:04:37",
+    updated_at: "2023-06-07 13:04:37",
+  }
+
+> $user->listings();                                                                                                                                               
+= Illuminate\Database\Eloquent\Relations\HasMany {#6265}
+
+> $user->listings;                                                                                                                                                 
+= Illuminate\Database\Eloquent\Collection {#7224
+    all: [
+      App\Models\Listing {#7235
+        id: 1,
+        user_id: 1,
+        title: "Doloremque sed porro officiis rerum ut esse.",
+        logo: null,
+        tags: "laravel, api,    backend",
+        company: "Wilkinson LLC",
+        location: "Denaview",
+        email: "aparisian@kulas.net",
+        website: "http://mayer.com/quaerat-consequatur-labore-aut-perspiciatis-hic-quia-nemo-iste.html",
+        description: "Quibusdam pariatur laboriosam dolor blanditiis. Ea in atque alias odit fugit. Enim in reiciendis reprehenderit. Excepturi fugiat aut placeat doloribus aliquid. Qui non rerum at mollitia.",
+        created_at: "2023-06-07 13:04:37",
+        updated_at: "2023-06-07 13:04:37",
+      },
+      App\Models\Listing {#7236
+        id: 2,
+        user_id: 1,
+        title: "Qui velit et facere id dolorum aperiam a hic.",
+        logo: null,
+        tags: "laravel, api,    backend",
+        company: "Hessel-Batz",
+        location: "North Aaliyahhaven",
+        email: "margret.bednar@haag.org",
+        website: "http://www.dicki.info/quod-ad-at-sequi-voluptatum",
+        description: "Quo voluptate natus eius itaque rerum. Tempora corrupti ratione eligendi neque assumenda pariatur nobis. Sequi dolore iste esse eum illo porro tempora sed. Et ut incidunt nam fugit. Eos ut rerum sit minus. Labore id maxime nihil provident.",
+        created_at: "2023-06-07 13:04:37",
+        updated_at: "2023-06-07 13:04:37",
+      },
+      App\Models\Listing {#7237
+        id: 3,
+        user_id: 1,
+        title: "Aperiam voluptatem fugit et maxime et deleniti.",
+        logo: null,
+        tags: "laravel, api,    backend",
+        company: "Hettinger Ltd",
+        location: "West Chet",
+        email: "magnus34@heaney.com",
+        website: "http://www.dietrich.com/labore-pariatur-modi-sed-sunt-culpa-mollitia-rerum",
+        description: "Voluptas culpa corrupti aut sit. Voluptatem vel recusandae necessitatibus inventore eos aut voluptatem. Quaerat eligendi in repellendus id laudantium consequatur. Modi debitis magnam voluptas ducimus. Et voluptatem voluptates minus eaque animi voluptas delectus. Vel officiis repellat consequatur architecto quas. Omnis in repudiandae sunt ut asperiores animi.",
+        created_at: "2023-06-07 13:04:37",
+        updated_at: "2023-06-07 13:04:37",
+      },
+      App\Models\Listing {#7238
+        id: 4,
+        user_id: 1,
+        title: "Tempore harum eum veritatis numquam mollitia.",
+        logo: null,
+        tags: "laravel, api,    backend",
+        company: "Zemlak, Kub and Conroy",
+        location: "Port Flavioborough",
+        email: "astehr@lindgren.com",
+        website: "http://botsford.biz/",
+        description: "Harum nisi suscipit ut sint distinctio praesentium. Ex ut nostrum tempore quaerat. Sit officia et fugiat aut nihil sequi. Natus quia tempora id possimus. Et omnis ea iste occaecati ipsa accusamus temporibus.",
+        created_at: "2023-06-07 13:04:37",
+        updated_at: "2023-06-07 13:04:37",
+      },
+      App\Models\Listing {#7239
+        id: 5,
+        user_id: 1,
+        title: "Qui sequi minima est beatae qui.",
+        logo: null,
+        tags: "laravel, api,    backend",
+        company: "Ernser and Sons",
+        location: "Robertstown",
+        email: "alexander59@rolfson.com",
+        website: "https://casper.org/qui-soluta-consequuntur-distinctio.html",
+        description: "Minima consequatur enim est autem velit. Et sapiente molestiae totam non earum omnis eius. Aut possimus eveniet et sed sed explicabo iste. Minima aut veritatis dolorem molestiae nostrum labore vero. Modi impedit nisi esse blanditiis hic. Officia similique esse quod voluptatem qui sit. Et sed nemo dolorem et ea.",
+        created_at: "2023-06-07 13:04:37",
+        updated_at: "2023-06-07 13:04:37",
+      },
+      App\Models\Listing {#7240
+        id: 6,
+        user_id: 1,
+        title: "Magni fugit tempora consequuntur tenetur sed.",
+        logo: null,
+        tags: "laravel, api,    backend",
+        company: "Ullrich and Sons",
+        location: "East Myrtie",
+        email: "kautzer.callie@parisian.com",
+        website: "http://howell.com/",
+        description: "Ut nisi quia voluptatem voluptatem architecto fuga. Perferendis maiores incidunt aut veritatis eos quam assumenda. Voluptates odio ut omnis eum saepe maiores. Asperiores quia voluptatem est. Et ex culpa nemo architecto voluptas. Atque nobis corporis enim quasi voluptas.",
+        created_at: "2023-06-07 13:04:37",
+        updated_at: "2023-06-07 13:04:37",
+      },
+    ],
+  }
+
+= App\Models\User {#6263
+    id: 1,
+    name: "jhon doe",
+    email: "jhon@mail.com",
+    email_verified_at: "2023-06-07 13:04:37",
+    #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+    #remember_token: "Ti6846oW44",
+    created_at: "2023-06-07 13:04:37",
+    updated_at: "2023-06-07 13:04:37",
+  }
+
+>                                  

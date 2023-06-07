@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
-
+    //relationship user
+public function user(){
+return $this->belongsTo(User::class,'user_id');
+}
 
 
     use HasFactory;
