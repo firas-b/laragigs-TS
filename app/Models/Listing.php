@@ -14,7 +14,7 @@ return $this->belongsTo(User::class,'user_id');
 
 
     use HasFactory;
- protected $fillable = ['title','logo','company', 'location', 'website', 'email', 'description', 'tags'];
+ protected $fillable = ['user_id','title','logo','company', 'location', 'website', 'email', 'description', 'tags'];
 
     public function ScopeFilter($query, array $filter/*the tag varaibale in the request or the search input varaiable*/)
     {

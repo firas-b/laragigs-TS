@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -35,10 +37,11 @@ class ListingController extends Controller
 
         return view('listings.create');
     }
-   
-       // Store Listing Data
-       public function store(Request $request) {
-      
+
+    // Store Listing Data
+    public function store(Request $request)
+    {
+
         $formFields = $request->validate([
             'title' => 'required',
             'company' => ['required', Rule::unique('listings', 'company')],
@@ -49,13 +52,14 @@ class ListingController extends Controller
             'description' => 'required'
         ]);
 
-        if($request->hasFile('logo')) {
-             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
-         }
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
 
         $formFields['user_id'] = auth()->id();
-         
-       Listing::create($formFields);
+
+
+        Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing created successfully!');
     }
@@ -63,21 +67,27 @@ class ListingController extends Controller
 
 
     //show edit form 
-    public function edit(Listing $listing){
+    public function edit(Listing $listing)
+    {
 
-        return view('listings.edit',[
-            'listing'=>$listing,
+        // Make sure logged in user is owner
+        if ($listing->user_id != auth()->id()) {
+            abort('404', 'you arenot the owner');
+        };
+
+        return view('listings.edit', [
+            'listing' => $listing,
         ]);
     }
 
     //update a listing 
-    public function update(Request $request , Listing $listing  /* containing the $listing->id   inthe form action */ ){
+    public function update(Request $request, Listing $listing  /* containing the $listing->id   inthe form action */)
+    {
 
-      
 
-        $formFields=$request->validate([
+        $formFields = $request->validate([
             'title' => 'required',
-            'company' =>'required',
+            'company' => 'required',
             'location' => 'required',
             'website' => 'required',
             'email' => ['required', 'email'],
@@ -86,19 +96,24 @@ class ListingController extends Controller
 
 
         ]);
-       
-       $listing->update($formFields);
+
+        $listing->update($formFields);
         return redirect('/')->with('message', 'Listing updated  successfully!');
     }
 
     //delete lisitng 
-    public function destroy (Listing $listing ){
+    public function destroy(Listing $listing)
+    {
 
 
         $listing->delete();
-        return redirect('/')->with('message','listing deleted successfully ');
+        return redirect('/')->with('message', 'listing deleted successfully ');
+    }
 
-
-
+    // Manage Listings
+    public function manage()
+    {
+  
+        return view('listings.manage', ['listings' =>auth()->user()->listings()->get()]);
     }
 }

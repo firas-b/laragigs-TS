@@ -33,6 +33,8 @@ use App\Http\Controllers\ListingController;
 
 //all listings
 Route::get('/', [ListingController::class,'index']);
+//manage listings
+Route::get('/listings/manage',[Listingcontroller::class,'manage'])->middleware('auth');
 // Show Create Form
 Route::get('/listings/create',[ListingController::class, 'create'])->middleware('auth');
 // Store Listing Data
@@ -46,7 +48,6 @@ Route::delete('/listings/{listing}',[ListingController::class,'destroy'])->middl
 
 // single listing always this kind of routes must be in the last to do not interuupt the others
 Route::get('/listing/{listing}',[ListingController::class,'show']);
-
 
 
 
